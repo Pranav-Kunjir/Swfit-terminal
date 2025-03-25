@@ -1,0 +1,31 @@
+{
+  "name": "swfit-terminal",
+  "version": "1.0.0",
+  "description": "An ai terminal that takes in prompt and give back commands to run in console",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pranav-Kunjir/Swfit-terminal.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Pranav-Kunjir/Swfit-terminal/issues"
+  },
+  "homepage": "https://github.com/Pranav-Kunjir/Swfit-terminal#readme",
+  "devDependencies": {
+    "electron": "^35.0.3"
+  },
+  "dependencies": {
+    "@xterm/xterm": "^5.5.0",
+    "latest": "^0.2.0",
+    "n": "^10.1.0",
+    "node-pty": "^1.0.0"
+  }
+}

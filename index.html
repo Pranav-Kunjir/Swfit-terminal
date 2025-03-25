@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <link rel="stylesheet" href="node_modules/@xterm/xterm/css/xterm.css" />
+    <script src="node_modules/@xterm/xterm/lib/xterm.js"></script>
+    <title>Swfit-Terminal</title>
+</head>
+<body>
+    <div class="aiprompt">
+        <div class="aioutput"></div>
+        <div class="command-confirm"></div>
+        <div class="inputs">
+            <input type="text" name="" id="prompt" placeholder="What command do you need help with?" autofocus />
+            <button id="sendprompt"><img src="./src/img/send-fill.svg" alt=""></button>
+        </div>
+    </div>
+    <div class="terminal" id="terminal"></div>
+</body>
+<script type="module" src="./renderer.js"></script>
+</html>
