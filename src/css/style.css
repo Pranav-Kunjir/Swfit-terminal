@@ -1,0 +1,22 @@
+*{
+    overflow: hidden;
+}
+.main{
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    grid-template-rows: 1fr; /* Single row */
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    gap: 0; /* No gap between columns */
+}
+.aiprompt, .terminal {
+    padding: 20px;
+    overflow: hidden;
+}
+.aiprompt{
+    position: relative;
+}
+.inputs{
+    position : fixed;
+    bottom : 5vh;
+}
