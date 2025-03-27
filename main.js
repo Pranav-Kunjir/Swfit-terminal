@@ -51,7 +51,8 @@ app.whenReady().then(() => {
     })
     ipcMain.on("prompt", (event,data) =>{
         console.log(data)
-        generate(data)
+        ai_output = generate(data)
+        mainWindow.webContents.send("ai_output", ai_output)
         // ptyProcess.write(data);
         // ptyProcess.write("\r"); this is how to eneter command
     })

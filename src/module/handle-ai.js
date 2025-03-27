@@ -20,7 +20,9 @@ const generate = async (prompt) => {
     
     const result = await geminiModel.generateContent(prompt);
     const response = result.response;
-    console.log(response.text());
+    let ai_output = response.text() 
+    console.log(ai_output);
+    return ai_output;
   } catch (error) {
     console.log("response error", error);
   }
