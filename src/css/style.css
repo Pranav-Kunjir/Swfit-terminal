@@ -1,6 +1,13 @@
 *{
     overflow: hidden;
+    padding: 0px;
+    margin: 0px;
 }
+
+#terminal{
+    color: white;
+}
+
 .main{
     display: grid;
     grid-template-columns: 1fr 1fr; /* Two equal columns */
@@ -10,7 +17,6 @@
     gap: 0; /* No gap between columns */
 }
 .aiprompt, .terminal {
-    padding: 20px;
     overflow: hidden;
 }
 .aiprompt{

@@ -15,7 +15,7 @@ if (window.location.pathname.includes("index.html")){
         cursorBlink: true,
         fontSize: 20,
         theme: {
-            background: '#fdf6e3',
+            background: '#2e3440',
             cursor: '#ffffff',
             cursorAccent: '#ffffff'
         },

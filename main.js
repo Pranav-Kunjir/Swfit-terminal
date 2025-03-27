@@ -2,6 +2,8 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('node:path')
 const pty = require('node-pty')
 const os = require('os')
+const {generate} = require("./src/module/handle-ai.js")
+
 
 let mainWindow
 let ptyProcess
@@ -10,7 +12,7 @@ const shell = os.platform() === 'win32' ? 'powershell.exe' : 'zsh'
 
 const createMainWindow = () => {
     mainWindow = new BrowserWindow({
-        width: 1000,
+        width: 1500,
         height: 900,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
@@ -31,6 +33,7 @@ const createMainWindow = () => {
     // Handle PTY data
     ptyProcess.onData(data => {
         mainWindow.webContents.send('terminal-output', data)
+
     })
 
     // Cleanup on window close
@@ -48,10 +51,15 @@ app.whenReady().then(() => {
     })
     ipcMain.on("prompt", (event,data) =>{
         console.log(data)
+        generate(data)
+        // ptyProcess.write(data);
+        // ptyProcess.write("\r"); this is how to eneter command
     })
     // IPC handlers
     ipcMain.on('terminal-input', (event, data) => {
-        if (ptyProcess) ptyProcess.write(data)
+        if (ptyProcess) {
+            ptyProcess.write(data)
+        }
     })
 
     ipcMain.on('terminal-resize', (event, cols, rows) => {
