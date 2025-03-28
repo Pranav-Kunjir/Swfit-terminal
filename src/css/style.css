@@ -1,7 +1,9 @@
 *{
-    overflow: hidden;
+    overflow-x: hidden;
     padding: 0px;
     margin: 0px;
+    font-family: "Ubuntu Mono", monospace;
+
 }
 
 #terminal{
@@ -16,13 +18,79 @@
     width: 100vw; /* Full viewport width */
     gap: 0; /* No gap between columns */
 }
-.aiprompt, .terminal {
+.terminal {
     overflow: hidden;
 }
-.aiprompt{
+.aiprompt {
     position: relative;
+    width: 100%;
+    padding: 10px;
+    background-color: #1e1e1e; /* Dark background */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+
 }
+
 .inputs{
     position : fixed;
-    bottom : 5vh;
+    bottom : 2vh;
+}
+.inputs input{
+    width: 75vh;
+    margin-left: 2vh;
+    text-align: center;
+    height: 5vh;
+    border-radius: 20px;
+    background-color: #3b4252;
+    color: white;
+}
+.inputs input ::placeholder {
+    color: white;
+  }
+
+.chat{
+    margin-bottom: 9vh;
+}
+.user_chat {
+    background-color: #0078d4; /* Blue background for user messages */
+    color: #ffffff;
+    align-self: flex-end; /* Align to the right */
+    padding: 8px 12px;
+    border-radius: 12px 12px 0 12px;
+    max-width: max-content; /* Make background wrap around text */
+    font-size: 14px;
+    word-wrap: break-word;
+    margin-top:3vh ;
+
+}
+
+.aichat {
+    margin-top:3vh ;
+    background-color: #333333; /* Dark gray for AI messages */
+    color: #ffffff;
+    align-self: flex-start; /* Align to the left */
+    padding: 8px 12px;
+    border-radius: 12px 12px 12px 0;
+    margin-right: 3vh;
+    max-width: max-content; /* Make background wrap around text */
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+
+/* Optional: Smooth transition */
+.user_chat, .ai_chat {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

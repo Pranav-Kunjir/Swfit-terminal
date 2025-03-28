@@ -1,4 +1,5 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+const {ipcMain} = require("electron")
 require('dotenv').config();
  
 const gemini_api_key = process.env.GEMINI_API_KEY;

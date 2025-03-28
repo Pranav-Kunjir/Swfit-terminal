@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://localhost:1337 ws://localhost:1337; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';">
     
@@ -14,11 +17,11 @@
 <body>
     <div class="main">
         <div class="aiprompt">
-            <div class="aioutput"></div>
+            <div class="chat" id="chat"></div>
             <div class="command-confirm"></div>
             <div class="inputs">
                 <input type="text" name="" id="prompt" placeholder="What command do you need help with?" autofocus />
-                <button id="sendprompt"><img src="./src/img/send-fill.svg" alt=""></button>
+                <!-- <button id="sendprompt"><img src="./src/img/send-fill.svg" alt=""></button> -->
             </div>
         </div>
         <div class="terminal" id="terminal"></div>
