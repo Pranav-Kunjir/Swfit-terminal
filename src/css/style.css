@@ -94,3 +94,69 @@
         transform: translateY(0);
     }
 }
+
+.command-confirm {
+    background: rgba(30, 30, 30, 0.95); /* Dark semi-transparent */
+    border: 1px solid #444;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Strong floating shadow */
+    
+    /* Floating Effect */
+    position: fixed;
+    bottom: 10vh;
+    left: 3vh;
+    width: 70vh;
+    max-height: 40vh;
+    overflow-y: auto;
+}
+
+.method {
+    font-size: medium;
+    background: #1e1e1e;
+    border: 1px solid #333;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin: 3vh;
+}
+
+
+/* Command Block Styled Like a Shell */
+.commandtorun {
+    background: #000;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    white-space: pre-wrap;
+}
+
+/* Explanation Text */
+.explaination {
+    background: #222;
+    color: #bbb;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+/* Execute Button Styling */
+button {
+    background: #008CBA;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+    background: #005f7f;
+}

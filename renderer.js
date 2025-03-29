@@ -1,5 +1,7 @@
 const prompt = document.getElementById("prompt")
 const chat = document.getElementById("chat")
+const command_confirm = document.getElementById("command_confirm")
+const execute = document.getElementById("execute")
 if (window.location.pathname.includes("index.html")){
     prompt.addEventListener("keydown", (e) =>{
         if (e.key === "Enter"){
@@ -9,13 +11,24 @@ if (window.location.pathname.includes("index.html")){
             window.electron.sendPrompt(prompt_value);
             setTimeout(() =>{
                 prompt.value = "";
+                command_confirm.innerHTML = `<div class="method"><h3>Nothing to Execute Yet!</h3></div>`
             }, 100);
         }
     })
     window.electron.onai_output((value) => {
-        let ai_chat = `<p class="aichat">${value.toString()}<p>`;
+        let ai_chat = `<p class="aichat">${value.toString()}</p>`;
         let formated_text = ai_chat.replace(/\n/g, "<br>")
         chat.insertAdjacentHTML("beforeend",formated_text);
+    })
+    window.electron.oncommand_method((value) =>{
+        let command_final = `<div class="method"><h3>Method:${value[1]}<h3>`
+        Object.entries(value[0]).forEach(([k,v]) => {
+            command_final += `<div class="commandtorun">${k}</div>`
+            command_final += `<div class="explaination">${v}</div>`
+            command_final += `<button data-command="${k}">Execute</button>`
+        })
+        command_final += `</div>`
+        command_confirm.insertAdjacentHTML("beforeend",command_final)
     })
     const term = new Terminal({
         cursorBlink: true,
@@ -57,6 +70,17 @@ if (window.location.pathname.includes("index.html")){
         fitAddon.fit()
         window.addEventListener('resize', () => fitAddon.fit())
     }
+    document.querySelector(".command-confirm").addEventListener("click", function(event) {
+        if (event.target.tagName === "BUTTON") {
+            let command = event.target.getAttribute("data-command");
+            if (command) {
+                console.log("Command to Execute:", command);
+                window.electron.sendCommand(command);
+            }
+        }
+    });
+
 }else{
     console.log("prompt skipped not found")
-}
+};
+
