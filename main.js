@@ -92,7 +92,7 @@ const generate = async (prompt) => {
 };
 
 
-const shell = os.platform() === 'win32' ? 'powershell.exe' : 'zsh'
+const shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash'
 
 const createMainWindow = () => {
     mainWindow = new BrowserWindow({
@@ -116,14 +116,30 @@ const createMainWindow = () => {
     })
 
     // Handle PTY data
-    ptyProcess.onData(data => {
-        mainWindow.webContents.send('terminal-output', data)
 
+
+
+    
+    ptyProcess.onData(data => {
+        if (mainWindow && !mainWindow.isDestroyed()) {
+            mainWindow.webContents.send('terminal-output', data);
+        }
+        
     })
 
     // Cleanup on window close
     mainWindow.on('closed', () => {
-        ptyProcess.kill()
+        if (ptyProcess) {
+            ptyProcess.kill()
+            ptyProcess = null
+        }
+        mainWindow = null
+        app.quit()
+    })
+    ptyProcess.on('exit', () => {
+        if (mainWindow && !mainWindow.isDestroyed()) {
+            mainWindow.webContents.send('terminal-exited')
+        }
         ptyProcess = null
     })
 }
@@ -134,9 +150,7 @@ const createMainWindow = () => {
 app.whenReady().then(() => {
     createMainWindow()
 
-    app.on('window-all-closed', () => {
-        if (process.platform !== 'darwin') app.quit()
-    })
+
     ipcMain.on("prompt", (event,data) =>{
         console.log(data)
         generate(data)
@@ -157,4 +171,12 @@ app.whenReady().then(() => {
     ipcMain.on('terminal-resize', (event, cols, rows) => {
         if (ptyProcess) ptyProcess.resize(cols, rows)
     })
+    app.on('window-all-closed', () => {
+        if (process.platform !== 'darwin') {
+            app.quit()
+            mainWindow = null;
+            ptyProcess.kill()
+        }
+    })
+    
 })
