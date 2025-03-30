@@ -2,20 +2,23 @@ const prompt = document.getElementById("prompt")
 const chat = document.getElementById("chat")
 const command_confirm = document.getElementById("command_confirm")
 const execute = document.getElementById("execute")
+const loader = document.getElementById("loader")
 if (window.location.pathname.includes("index.html")){
     prompt.addEventListener("keydown", (e) =>{
         if (e.key === "Enter"){
             let prompt_value = prompt.value;
             let user_chat = `<p class="user_chat">${prompt_value}<p>`;
             chat.insertAdjacentHTML("beforeend",user_chat);
+            loader.classList.toggle("hidden")
             window.electron.sendPrompt(prompt_value);
             setTimeout(() =>{
                 prompt.value = "";
-                command_confirm.innerHTML = `<div class="method"><h3>Nothing to Execute Yet!</h3></div>`
+                command_confirm.innerHTML = ``
             }, 100);
         }
     })
     window.electron.onai_output((value) => {
+        loader.classList.toggle("hidden")
         let ai_chat = `<p class="aichat">${value.toString()}</p>`;
         let formated_text = ai_chat.replace(/\n/g, "<br>")
         chat.insertAdjacentHTML("beforeend",formated_text);

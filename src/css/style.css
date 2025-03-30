@@ -102,13 +102,7 @@
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Strong floating shadow */
     
-    /* Floating Effect */
-    position: fixed;
-    bottom: 10vh;
-    left: 3vh;
-    width: 70vh;
-    max-height: 40vh;
-    overflow-y: auto;
+    width: 60vh;
 }
 
 .method {
@@ -119,7 +113,7 @@
     border-radius: 10px;
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    margin: 3vh;
+    margin-top: 3vh;
 }
 
 
@@ -159,4 +153,47 @@ button {
 
 button:hover {
     background: #005f7f;
+}
+
+
+/* .loader {
+    border: 16px solid #f3f3f3; 
+    border-top: 16px solid #3498db; 
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  } */
+  .loader {
+    margin-left: 8vh;
+    width: 32px;
+    height: 32px;
+    background: #fff;
+    border-radius: 50%;
+    position: relative;
+    animation: roll 1s ease-in-out infinite alternate;
+  }
+  .loader:after{
+    content:"";
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    border: 5px solid ;
+    border-color: #ff3d00 transparent;
+  }
+  @keyframes roll {
+    0% {
+      transform: translateX(-150%) rotate(0deg) ;
+    }
+    100% {
+      transform:  translateX(150%) rotate(360deg);
+    }
+  }
+.hidden{
+     visibility: hidden;
 }
