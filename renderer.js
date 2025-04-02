@@ -1,6 +1,6 @@
 const prompt = document.getElementById("prompt")
 const chat = document.getElementById("chat")
-const command_confirm = document.getElementById("command_confirm")
+// const command_confirm = document.getElementById("command_confirm")
 const execute = document.getElementById("execute")
 const loader = document.getElementById("loader")
 if (window.location.pathname.includes("index.html")){
@@ -24,14 +24,14 @@ if (window.location.pathname.includes("index.html")){
         chat.insertAdjacentHTML("beforeend",formated_text);
     })
     window.electron.oncommand_method((value) =>{
-        let command_final = `<div class="method"><h3>Method:${value[1]}<h3>`
+        let command_final = `<div class="method aichat"><h3>Method:${value[1]}<h3>`
         Object.entries(value[0]).forEach(([k,v]) => {
             command_final += `<div class="commandtorun">${k}</div>`
             command_final += `<div class="explaination">${v}</div>`
             command_final += `<button data-command="${k}">Execute</button>`
         })
         command_final += `</div>`
-        command_confirm.insertAdjacentHTML("beforeend",command_final)
+        chat.insertAdjacentHTML("beforeend",command_final)
     })
     const term = new Terminal({
         cursorBlink: true,
@@ -73,7 +73,7 @@ if (window.location.pathname.includes("index.html")){
         fitAddon.fit()
         window.addEventListener('resize', () => fitAddon.fit())
     }
-    document.querySelector(".command-confirm").addEventListener("click", function(event) {
+    document.querySelector(".chat").addEventListener("click", function(event) {
         if (event.target.tagName === "BUTTON") {
             let command = event.target.getAttribute("data-command");
             if (command) {

@@ -33,8 +33,9 @@
 }
 
 .inputs{
+    margin-top: 4vh;
     position : fixed;
-    bottom : 2vh;
+    bottom : 1vh;
 }
 .inputs input{
     width: 75vh;
@@ -44,13 +45,14 @@
     border-radius: 20px;
     background-color: #3b4252;
     color: white;
+    z-index: 999;
 }
 .inputs input ::placeholder {
     color: white;
   }
 
 .chat{
-    margin-bottom: 9vh;
+    /* margin-bottom: 9vh; */
 }
 .user_chat {
     background-color: #0078d4; /* Blue background for user messages */
@@ -169,7 +171,7 @@ button:hover {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   } */
-  .loader {
+  /* .loader {
     margin-left: 8vh;
     width: 32px;
     height: 32px;
@@ -194,6 +196,31 @@ button:hover {
       transform:  translateX(150%) rotate(360deg);
     }
   }
-.hidden{
-     visibility: hidden;
+*/
+
+/* HTML: <div class="loader"></div> */
+/* HTML: <div class="loader"></div> */
+.loader {
+  font-weight: bold;
+  font-size: large;
+  animation: l1 1s linear infinite alternate;
+  margin-top: 1vh;
+  padding: 0px;
+  margin-top:3vh ;
+  background-color: #333333; /* Dark gray for AI messages */
+  color: #ffffff;
+  align-self: flex-start; /* Align to the left */
+  padding: 8px 12px;
+  border-radius: 12px 12px 12px 0;
+  margin-right: 3vh;
+  max-width: max-content; /* Make background wrap around text */
+  font-size: 14px;
+  word-wrap: break-word;
 }
+.loader:before {
+  content:"Generating..."
+}
+@keyframes l1 {to{opacity: 0}}
+.hidden{
+    visibility: hidden;
+} 
